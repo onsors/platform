@@ -1,0 +1,9 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "nedb": "../data/",
+  "public": "../public/",
+  "loader": "../src/app.js",
+  "baseURL": "/timesheets",
+  "token": "1j230i4j102i3j341i23u491uh23491h29034jh19823j4984j"
+}

@@ -1,0 +1,11 @@
+[
+  "app-registry/atlas-cli_clear-registration.cmd.js",
+  "app-registry/atlas-cli_register-source.cmd.js",
+  "app-utils/apps_generate-app-loader.cmd.js",
+  "cli-source/atlas-cli_clear_source.cmd.js",
+  "cli-source/atlas-cli_get_source.cmd.js",
+  "cli-source/atlas-cli_set_source.cmd.js",
+  "cli-utils/atlas-cli_instance-cwd.cmd.js",
+  "cli-utils/atlas-cli_which.cmd.js",
+  "cli-utils/atlas-version.cmd.js"
+]

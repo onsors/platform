@@ -1,0 +1,6 @@
+{
+  "host": "global errors-app.feathersjs.com",
+  "port": 80,
+  "nedb": "NEDB_BASE_PATH",
+  "public": "../public/"
+}

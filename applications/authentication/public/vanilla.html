@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vanilla Socket.IO</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container center-text">
+    <h1>Vanilla Socket.IO</h1>
+
+    <section>
+      <h3>Basic email/password authentication via socket</h3>
+      <form action="/auth/local" method="post">
+        <fieldset>
+          <label class="left-text">Email</label>
+          <input type="text" class="block full" name="email" value="admin@feathersjs.com"/>
+        </fieldset>
+        <fieldset>
+          <label class="left-text">Password</label>
+          <input type="password" class="block full" name="password" value="admin"/>
+        </fieldset>
+        <button id="submit" class="block full">Login</button>
+      </form>
+      <button id="logout" class="hidden">Logout</button>
+    </section>
+  </div>
+
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+  <script type="text/javascript" src="socket.io/socket.io.js" ></script>
+  <script type="text/javascript" src="serialize.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var $form = $('form');
+      var $logout = $('#logout');
+      var $submit = $('#submit');
+      var host = 'http://localhost:3030';
+      var socket = io(host, {
+        transport: ['websockets']
+      });
+
+      // Set up Feathers client side
+      socket.on('unauthorized', function(error) {
+        alert('Your socket authentication request failed.');
+        console.error(error);
+      });
+
+      socket.on('disconnect', function(error) {
+        console.error('Socket disconnected', error);
+      });
+
+      socket.on('connect', function() {
+        console.log('Socket connected');
+
+        socket.on('authenticated', function (response) {
+          console.log('Authenticated!', response);
+          alert('Your JWT is: ' + response.token);
+
+          $form.toggleClass('hidden');
+          $logout.toggleClass('hidden');
+
+          // find restricted messages now that you are authenticated
+          socket.emit('messages::find', function(error, result) {
+            if (error) {
+              console.log('Error finding messages', error);
+            }
+
+            console.log('Messages', result);
+          });
+        });
+      });
+
+      $submit.on('touchstart click', function(ev){
+        ev.preventDefault();
+
+        var payload = $form.serializeForm();
+        payload.type = 'local';
+
+        socket.emit('authenticate', payload);
+      });
+
+      $logout.on('touchstart click', function(ev) {
+        ev.preventDefault();
+
+        socket.emit('logout', function() {
+          $form.toggleClass('hidden');
+          $logout.toggleClass('hidden');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
