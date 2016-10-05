@@ -1,0 +1,9 @@
+--
+  name: atlas dev
+  description: The primary Dev Atlas Server hosts file.
+--
+
+{
+  url: "atlas.dev",
+  host: "localhost:8081"
+}

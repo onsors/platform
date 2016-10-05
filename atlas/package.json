@@ -1,0 +1,19 @@
+{
+  "name": "platform",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "express-url-rewrite": "^1.0.2",
+    "portastic": "^1.0.1",
+    "rocky": "^0.4.12",
+    "strip-json-comments": "^2.0.1",
+    "yaml-front-matter": "^3.4.0"
+  }
+}
