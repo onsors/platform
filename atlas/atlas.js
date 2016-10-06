@@ -8,7 +8,6 @@ const proxy = require('./atlas_proxy')
 	}
 
 	portastic
-
 		// Collect available ports
 		.find({ min: ports.min, max: ports.max})
 		.then(function(list){

@@ -13,19 +13,18 @@ const path = require('path')
 	details atlas uses to mount them.
 
 */
-const APP_LOADERS = fs.readdirSync(__dirname).filter(function(node){
-						
-						// collect all sub-directories in the applications directory
-						return fs.statSync(path.join(__dirname, node)).isDirectory()
-
-					}).reduce(function(APPS, APP){
-							APP = path.join(__dirname, APP, 'atlas_loader.js');
-							try{ 
-								fs.lstatSync(APP) 
-								return APPS.push( require(APP) ), APPS;
-							} catch(e){
-								return APPS;
-							}
-					}, []);
+const APP_LOADERS = fs.readdirSync(__dirname)
+		.filter(function(node){	
+			// collect all sub-directories in the applications directory
+			return fs.statSync(path.join(__dirname, node)).isDirectory()
+		}).reduce(function(APPS, APP){
+			APP = path.join(__dirname, APP, 'atlas_loader.js');
+			try{ 
+				fs.lstatSync(APP) 
+				return APPS.push( require(APP) ), APPS;
+			} catch(e){
+				return APPS;
+			}
+		}, []);
 
 module.exports = APP_LOADERS;

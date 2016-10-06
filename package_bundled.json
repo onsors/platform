@@ -1,0 +1,5 @@
+{
+  "name": "bundled-dependencies",
+  "description": "all dependencies for all sub-directories bundled into a single package",
+  "dependencies": {}
+}

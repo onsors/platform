@@ -1,9 +1,0 @@
---
-  name: atlas main
-  description: The primary Atlas Server hosts file.
---
-
-{
-  url: "atlas.com",
-  host: "localhost:8080"
-}
